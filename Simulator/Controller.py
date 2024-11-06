@@ -1,9 +1,5 @@
 from copy import deepcopy
-from PM import PM
-from Function import Function
-from Event_List import Event_List
-
-class Controller:
+class Simulator:
   def __init__(self,physical_machines:list,functions):
     # Parameters
     self.tmp_p = physical_machines
@@ -86,7 +82,9 @@ class Controller:
 
     print('_'*62)
     result = self.get_statistics()
+
     for k,v in result.items():
+      
       if type(k)==PM:
         if verbose:
           print('='*(len(str(k))+4))
@@ -94,7 +92,16 @@ class Controller:
           print('='*(len(str(k))+4))
 
           for kp,vp in v.items():
-            print(' ',kp,vp)
+            
+            # afra
+            if kp in ["completed containers", "completed functions"]:
+              print()
+              print(kp)
+              for item in vp:
+                print(item)
+            else:
+              print(' ',kp,vp)
+
           print('_'*62)
       elif type(v)==dict:
         print(k)
