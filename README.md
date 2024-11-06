@@ -1,39 +1,12 @@
-# MFS: a Serverless FaaS Simulator
-![version](https://img.shields.io/static/v1?label=Version&message=1.0.0&color=informational&style=for-the-badge)
+# Package Aware DRL Scheduler
 
-MFS is a FaaS simulator designed to be easy and accurate. it supports many metrics such as:
-* average respone time
-* average waiting time
-* average service time
-* rejection ratio
-* missed ratio
-* throughput
-* different resource utilizations
-* etc
+## Overview
+Serverless edge computing, especially in Function-as-a-Service (FaaS) models, has grown in popularity as it enables developers to run functions without managing infrastructure. However, efficient task scheduling to optimize resources and reduce delays remains a challenge. This simulator enables testing package-aware and dependency-aware scheduling approaches using DRL techniques.
+This repository builds upon the original [MFS repository by hanaforoosh](https://github.com/hanaforoosh/MFS).
 
-# Sample Usage:
-1. first you should add `Simulator` directory to the `Sys.path`. then you need to import the controller as follows:
-```python
-import sys
-sys.path.insert(0, 'Simulator')
-from Controller import *
-```
-2. then you should specify `PM` and `Function` lists, followed by a run statement:
-
-```python
-p = [
-     PM(id=0,ram=1,cpu=1)
-]
-f = [
-      Function(id=0,t=i,execution_time=5,ram=1,cpu=1,gpu=0,tpu=0,deadline=300) for i in range(0,10)
-  ]
-
-s = Controller(physical_machines=p,functions=f)
-s.run()
-```
-
-# Citation
-To cite MFS please use the following format:
-```
-M. Hanaforoosh, M. Ashtiani and M. A. Azgomi, "MFS: A Serverless FaaS Simulator," 2023 9th International Conference on Web Research (ICWR), Tehran, Iran, Islamic Republic of, 2023, pp. 81-86, doi: 10.1109/ICWR57742.2023.10139045.
-```
+## Key Features
+- **Package-Aware Scheduling**: Reduces cold start delays by prioritizing containers with pre-installed packages.
+- **Dependency-Aware Scheduling**: Minimizes delays by co-locating dependent functions.
+- **Reward Function for DRL**: Incorporates a custom reward function that promotes lower execution times, efficient package installation, and optimal dependency management.
+- **DRL Algorithms**: Adapts scheduling decisions dynamically using Deep SARSA and DQN.
+- **Extensive Metrics**: Provides detailed metrics for analyzing scheduling performance.
